@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head th:replace="plantillas/template :: head">
+<meta charset="UTF-8">
+<title>Restauracion de Base de Datos</title>
+</head>
+<body>
+
+	<header th:replace="plantillas/template :: header"></header>
+
+
+	<div class="container mt-5 mw-100">
+		<div class="row col" style="justify-content: center">
+			<div class="card bg-light">
+				<div class="card-header bg-info text-white" th:text="${titulo}"></div>
+				<div class="card-body">
+
+					<p th:text="${mensaje}" th:if="${mensaje ne null}"
+						class="alert alert-primary"></p>
+
+					<form method="post" th:action="@{/views/platos/upload}" novalidate
+						enctype="multipart/form-data">
+						<div class="form-group">
+							<input type="file" name="fichero" class="form-control-file"
+								style="background-color: aqua;">
+						</div>
+						<button type="submit" class="btn btn-info">RestaurarBD</button>
+					</form>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<footer th:replace="plantillas/template :: footer"></footer>
+
+</body>
+</html>
