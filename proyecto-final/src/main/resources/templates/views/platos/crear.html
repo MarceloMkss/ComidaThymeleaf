@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head th:replace="plantillas/template :: head">
+<meta charset="UTF-8">
+
+
+<title>Insert title here</title>
+</head>
+<body>
+
+	<header th:replace="plantillas/template :: header"></header>
+
+	<div class="container mt-5">
+
+		<div class="card bg-light">
+			<div class="card-header bg-info text-white" th:text="${titulo}"></div>
+			<div class="card-body">
+
+				<form th:action="@{/views/platos/save}" method="post"
+					th:object="${platos}">
+					<div class="form-row">
+						<div class="col-md-6 mb-3">
+							<input type="hidden" th:field="*{id}"> <label
+								for="nombre">Nombre: </label> <input type="text"
+								th:field="*{nombre}" class="form-control form-control-sm "
+								id="nombre" placeholder="Nombre del plato"> <small></small>
+						</div>
+
+
+						<div class="col-md-3 mb-3">
+							<label for="categoria">Categoria:</label> <select
+								th:field="*{categoria}" class="custom-select custom-select-sm"
+								id="categoria" required>
+								<option selected disabled value="">Choose...</option>
+								<option th:each="categoria:${categorias}"
+									th:value="${categoria.id}" th:text="${categoria.nombre}" />
+
+							</select>
+						</div>
+
+						<div class="col-md-3 mb-3">
+							<label for="procedencia">Procedencia:</label> <select
+								th:field="*{procedencia}" class="custom-select custom-select-sm"
+								id="procedencia" required>
+								<option selected disabled value="">Choose...</option>
+								<option th:each="procedencia:${procedencias}"
+									th:value="${procedencia.id}" th:text="${procedencia.nombre}" />
+
+							</select>
+						</div>
+
+					</div>
+
+
+					<div class="card-footer bg-info">
+						<input type="submit" class="btn btn-primary btn-sm"
+							value="Guardar" />
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="plantillas/template :: footer"></footer>
+
+
+</body>
+</html>
